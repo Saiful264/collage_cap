@@ -1,43 +1,61 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { toast } from "react-hot-toast";
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
 
-  // const handleLogOut = () => {
-  //   logOut()
-  //     .then()
-  //     .catch((error) => {
-  //       // const errorCode = code;
-  //       toast.error(error.message);
-  //     });
-  // };
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => {
+        // const errorCode = code;
+        toast.error(error.message);
+      });
+  };
 
   const navOptions = (
     <>
       <li>
-        <NavLink to='/'
+        <NavLink
+          to="/"
           className={({ isActive }) => (isActive ? "active" : "text-black")}
         >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to='/classes'
-          className={({ isActive }) => (isActive ? "active" : "text-black")}>Classes</NavLink>
+        <NavLink
+          to="/classes"
+          className={({ isActive }) => (isActive ? "active" : "text-black")}
+        >
+          Colleges
+        </NavLink>
       </li>
       <li>
-        <NavLink to='/instructors'
-          className={({ isActive }) => (isActive ? "active" : "text-black")}>Instructors</NavLink>
+        <NavLink
+          to="/instructors"
+          className={({ isActive }) => (isActive ? "active" : "text-black")}
+        >
+          Admission
+        </NavLink>
       </li>
-      {/* <li>
-        {user && <NavLink to='/dashboard'
-          className={({ isActive }) => (isActive ? "active" : "text-black")}>Dashboard</NavLink>}
-      </li> */}
+      <li>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) => (isActive ? "active" : "text-black")}
+        >
+          My College
+        </NavLink>
+      </li>
     </>
   );
 
   return (
     <div>
-      <div className="navbar px-12">
+      <div className="navbar px-12 bg-slate-200">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="lg:hidden">
@@ -63,10 +81,11 @@ const Navbar = () => {
               {navOptions}
             </ul>
           </div>
-          <Link to="/" className="normal-case text-xl flex items-center">
-            <span className="text-md pl-2 md:text-3xl text-black uppercase font-bold">
-            Summer<span className="text-yellow-400 font-mono lowercase">sports</span>
-            </span>
+          <Link className="flex items-center gap-2">
+            <div>
+              <img className="w-12 h-12" src={logo} alt="logo" />
+            </div>
+            <div className="font-bold text-2xl">AdmitEase</div>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -75,30 +94,30 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {/* {user ? ( */}
+          {user ? (
             <div className="flex items-center gap-3">
-              {/* <div className="lg:tooltip lg:tooltip-bottom" data-tip={user?.displayName}> */}
-              <div className="avatar">
-                <div className="w-6 rounded-full">
-                  {/* <img src={user?.photoURL} /> */}
+              <div
+                className="lg:tooltip hidden lg:visible lg:tooltip-bottom"
+                data-tip={user?.displayName}
+              >
+                <div className="avatar">
+                  <div className="w-6 rounded-full">
+                    <img src={user?.photoURL} />
+                  </div>
                 </div>
               </div>
-              </div>
-              <button
-                // onClick={handleLogOut}
-                className="btns-primary"
-              >
+              <button onClick={handleLogOut} className="btns-primary">
                 SignOut
               </button>
             </div>
-          {/* ) : ( */}
+          ) : (
             <Link to="/login" className="btns-primary font-bold">
               Login
             </Link>
-          {/* )} */}
+          )}
         </div>
       </div>
-    // </div>
+    </div>
   );
 };
 
