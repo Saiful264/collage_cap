@@ -2,7 +2,9 @@
 const Home = () => {
     return (
         <div>
-            hellow
+            <section>
+                
+            </section>
         </div>
     );
 };
