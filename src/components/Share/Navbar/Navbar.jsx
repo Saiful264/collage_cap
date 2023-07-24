@@ -28,7 +28,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/classes"
+          to="/collage"
           className={({ isActive }) => (isActive ? "active" : "text-black")}
         >
           Colleges
@@ -36,7 +36,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/instructors"
+          to="/admission"
           className={({ isActive }) => (isActive ? "active" : "text-black")}
         >
           Admission
@@ -44,7 +44,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/dashboard"
+          to="/mycollage"
           className={({ isActive }) => (isActive ? "active" : "text-black")}
         >
           My College
